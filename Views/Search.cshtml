@@ -1,0 +1,50 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@{
+    Layout = "MainTemplate.cshtml";
+    var searchQuery = Request.QueryString["q"];
+
+}
+@Html.Partial("Hero")
+<div class="my-container">
+    <form action="@Model.Url" method="GET" id="search">
+        <div style="display: flex;">
+            <div style="margin-right: 20px;">
+                <input type="text" placeholder="search" name="q" value="" style="border: none;padding: 12px;background: whitesmoke;" />
+            </div>
+            <div>
+                <button style="padding: 12px;border: none;background: #c8d8d0;">Search<i style="margin-left: 10px;" class="fa fa-search"></i></button>
+            </div>
+        </div>
+        <div style="margin-top: 25px">
+            @if (!string.IsNullOrWhiteSpace(searchQuery))
+            {
+                var results = Umbraco.ContentQuery.Search(searchQuery, string.Empty);
+                long resultCount = results != null && results.Any() ? results.Count() : 0;
+                <p>Your search for <strong>@searchQuery</strong> gave @resultCount results </p>
+                if (resultCount > 0)
+                {
+                    foreach (var result in results)
+                    {
+                        var title = result.Content.Value<string>("productName");
+                        var price = result.Content.Value<string>("productPrice");
+                        var typedMediaPickerSingle = result.Content.Value<IPublishedContent>("productImage");
+                        <a href="@result.Content.Url">
+                            <div class="results" style="display: flex; background: #e4e0df; margin-bottom: 20px;">
+                                <div>
+                                    @if (typedMediaPickerSingle != null)
+                                    {
+                                        <img src="@typedMediaPickerSingle.Url" style="width:150px" alt="@typedMediaPickerSingle.Value("alt")" />
+                                    }
+                                </div>
+                                <div style="margin: 10px 25px;">
+                                    <h3>@(!string.IsNullOrWhiteSpace(title) ? title : result.Content.Name)</h3>
+                                    <p>@(!string.IsNullOrWhiteSpace(price) ? price : null)</p>
+                                </div>
+                            </div>
+                        </a>
+                    }
+                }
+            }
+        </div>
+    </form>
+</div>

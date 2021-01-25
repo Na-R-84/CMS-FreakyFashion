@@ -1,0 +1,59 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@{
+    var site = Model.Root();
+}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+
+        <a class="navbar-brand" href="/">FreakyFashion</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav ml-auto">
+
+                <!--SEARCH-->
+                @{
+                    var search = Umbraco.Content(Guid.Parse("f6efdfc6-eede-469f-be75-d1fd64735390"))
+                    .Children()
+                    .Where(x => x.IsVisible());
+                }
+
+                @foreach (var item in search)
+                {
+
+                    <a style=" color:aliceblue;padding-right:50;" class="navbar-item" href="@item.Url">@item.Name</a>
+                }
+
+                <!--SEARCH-->
+
+                @{
+                    var selection = Umbraco.Content(Guid.Parse("979340c4-b790-4137-b1c3-3a16e468b042"))
+                    .Children()
+                    .Where(x => x.IsVisible());
+                    //var selection = site.Children.Where(x => x.IsVisible());
+                }
+
+                @foreach (var item in selection)
+                {
+
+                    <a class="navbar-item" style="color:aliceblue; padding-right:20;" href="@item.Url">@item.Name</a>
+
+                }
+
+
+
+                @*@foreach(var item in selection)
+        {
+        <li>
+           <a class="@(item.IsAncestorOrSelf(Model) ? "active" : null)" href="@item.Url">@item.Name</a>
+        </li>
+
+        }*@
+
+            </div>
+        </div>
+
+    </div>
+</nav>

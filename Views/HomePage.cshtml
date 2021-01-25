@@ -1,0 +1,77 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.HomePage>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@using Umbraco.Web
+
+@{
+    Layout = "MainTemplate.cshtml";
+ 
+}
+
+<!-- Hero Image -->
+
+@Html.Partial("Hero")
+
+
+
+<!--Carousel-->
+
+
+@{
+    var selection = Umbraco.Content(Guid.Parse("69087a86-fd35-4be8-8fdd-3386847fc683"))
+    .Children()
+
+    .Where(x => x.IsVisible());
+
+    bool isActive = true;
+}
+
+<div id="hero" class="hero carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+        @foreach (var item in selection)
+        {
+            <div class="carousel-item @(isActive ? "active" : "")" style=" background: #d1e0e0">
+
+                <div class="row h-75" >
+                    <div class="col text-center ">
+
+                        <h2 style="color:aliceblue; text-align: center; padding-top:100px;">@item.Value("productName")</h2>
+                        <a class="btn btn-dark  " href="@item.Url" style="color:aliceblue"> Se Mer</a>
+                    </div>
+                    <div class="col">
+                       @{  
+                           var typedMediaPickerSingle = item.Value<IPublishedContent>("productImage");
+
+                          if (typedMediaPickerSingle != null)
+                          {
+                                <img src="@typedMediaPickerSingle.Url" style="width:100%; border: 2px" alt="@typedMediaPickerSingle.Value("alt")" />
+                          }
+                           }
+                    </div>
+                </div>
+            </div>
+            isActive = false;
+        }
+    </div>
+    <a class="carousel-control-prev" href="#hero" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only ">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#hero" role="button" data-slide="next">
+        <span class="carousel- control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>
+</div>
+<hr />
+<!-- Category -->
+
+@Html.Partial("Category View")
+
+<hr />
+
+<!-- Popular Product -->
+
+<h2 class="col text-center">Populära Produkter</h2>
+@Html.Partial("Popular products")
+
+
+

@@ -1,0 +1,1 @@
+{"@t":"2020-11-13T11:46:30.3132471Z","@mt":"{LogPrefix} Terminating {Immediate}","LogPrefix":"[TempFileCleanup] ","Immediate":"","SourceContext":"Umbraco.Web.Scheduling.BackgroundTaskRunner","ProcessId":23540,"ProcessName":"iisexpress","ThreadId":81,"AppDomainId":3,"AppDomainAppId":"LMW3SVC2ROOT","MachineName":"LAPTOP-ALJ63UMS","Log4NetLevel":"INFO "}

@@ -1,0 +1,1 @@
+{"@t":"2020-11-13T18:11:59.2616812Z","@mt":"{LogPrefix} Terminating {Immediate}","LogPrefix":"[Umbraco.Web.Scheduling.IBackgroundTask] ","Immediate":"","SourceContext":"Umbraco.Web.Scheduling.BackgroundTaskRunner","ProcessId":22508,"ProcessName":"iisexpress","ThreadId":208,"AppDomainId":3,"AppDomainAppId":"LMW3SVC2ROOT","MachineName":"LAPTOP-ALJ63UMS","Log4NetLevel":"INFO "}

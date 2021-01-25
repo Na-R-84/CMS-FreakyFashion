@@ -1,0 +1,11 @@
+﻿@inherits Umbraco.Web.Macros.PartialViewMacroPage
+@{ var selection = CurrentPage.FeaturedCategories.Split(','); }
+    @foreach (var id in selection)
+    {
+        var item = Umbraco.Content(id);
+            <a href="@item.Url">
+                <div>
+                    @item.Name
+                </div>
+            </a>
+    }

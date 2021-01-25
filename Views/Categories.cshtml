@@ -1,0 +1,35 @@
+﻿
+@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.Category>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+	Layout = "MainTemplate.cshtml";
+}
+
+@{
+	var category = Umbraco.Content(Guid.Parse("d4c5e75b-139c-44db-bae6-dfd32cd5ec30"))
+    .ChildrenOfType("category")
+    .Where(x => x.IsVisible());
+}
+
+
+	<div class="container">
+    <div class="row">
+        <div class="row justify-content-md-center">
+            <div class="card-deck">
+               @foreach (var item in category)
+                {
+                    <div class="card">
+                          <img class="card-img-top" src="..." alt="category image">
+                          <div class="card-body">
+                                <h5 class="card-title">@item.Value("CtegoryName")</h5>
+                                <p class="card-Image">@item.Value("CategoryImage")</p>
+                              
+                          </div>
+                    </div> 
+                }
+            </div>
+            
+        </div>
+        
+    </div>
+</div>

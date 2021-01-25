@@ -1,0 +1,57 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+    @using ClientDependency.Core.Mvc
+@{
+    Layout = null;
+    var homePage = Model.AncestorOrSelf<HomePage>();
+}
+<html>
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+   <link rel="stylesheet" href="/css/Style.css" type="text/css">
+    @Html.RenderCssHere()
+<title>Freaky Fashion</title>
+
+</head>
+<body>
+    <!-- Nav goes here -->
+   @Html.Partial("NavBar")
+   @RenderBody()
+   <!-- Footer -->
+   @Html.RenderJsHere()
+   <footer class="bg-dark">
+       <div class="container">
+           <div class="row">
+               <div class="col text-center py-4">
+                   <ul class="list-online-item  ">
+                       <li class="list-inline-item ">
+                           
+                           <a class="text-white" style="padding-right:35" href="#"><i class="fas fa-globe-americas"></i>
+                                Grattis frakt och retur 
+                           </a>
+                           
+                           <a class="text-white" style="padding-right:35" href="#"><i class="fas fa-plane"></i>
+                               Expressfrakt
+                           </a>
+                           
+                           <a class="text-white" style="padding-right:35" href="#"><i class="far fa-life-ring"></i>
+                               Säkra betalning
+                           </a>
+                           <a class="text-white" style="padding-right:35" href="#"><i class="far fa-smile"></i>
+                               Nyheter varje dag
+                           </a>
+                       </li>
+                   </ul>
+                   
+                   <p class="text-white">Copyright &copy; @DateTime.Now.Year Freaky Fashion</p>
+               </div>
+               
+           </div>
+       </div>
+       
+   </footer>
+   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+
+</html>

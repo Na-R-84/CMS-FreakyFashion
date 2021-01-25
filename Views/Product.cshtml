@@ -1,0 +1,34 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.Product>
+@using ContentModels = Umbraco.Web.PublishedModels;
+
+@{
+    Layout = "MainTemplate.cshtml";
+
+}
+@Html.Partial("Hero")
+
+
+
+<div class="container">
+
+    <div class="row">
+
+        <div class="col h-50">
+           @{ var typedMediaPickerSingle = Model.Value<IPublishedContent>
+                      ("productImage");
+                if (typedMediaPickerSingle != null)
+                {
+                    <img src="@typedMediaPickerSingle.Url" style="width:200px" alt="@typedMediaPickerSingle.Value("productImage")" />
+                    } }
+        </div>
+
+        <div class="col h-50 ">
+
+            <h1 class="font-weight-bold">@Model.Value("productName")</h1>
+            <p class="font-weight-lighter text-muted">@Model.Value("articleNumber")</p>
+            <p>@Model.Value("productDescription")</p>
+            <p>Pris: @Model.Value("productPrice")</p>
+        </div>
+    </div>
+</div>
+

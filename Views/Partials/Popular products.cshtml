@@ -1,0 +1,56 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+@using Umbraco.Core.PropertyEditors.ValueConverters;
+
+@{
+	var popularProducts = Umbraco.Content(Guid.Parse("69087a86-fd35-4be8-8fdd-3386847fc683"))
+    .Children()
+    .Where(x => x.IsVisible()).OrderByDescending(x => x.CreateDate)
+    .Take(6);
+}
+
+
+
+<!-- latest products Cards-->
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <div class="card-deck">
+                
+            	@foreach (var item in popularProducts)
+                {
+
+                    <div class="card" style=" background: #d1e0e0">
+                        <div class="container">
+                            <div class="row">
+                                <div class="last-product" style="display: flex;  margin-bottom: 20px;">
+                                    <div>
+                                      
+                                        <div class="card-body">
+
+                                            @{ var popularProduct = item.Value<IPublishedContent>("productImage");
+                                                if (popularProduct != null)
+                                                {
+                                                <a href="@item.Url">
+                                                    <img class="card-img-top" src="@popularProduct.Url" style="width:150px" alt="@popularProduct.Value("alt")" />
+                                                </a>
+                                                }
+                                            }
+                                            <h5 class="card-title">@item.Name</h5>
+                                            <p class="card-price">Pris:@item.Value("ProductPrice")</p>
+                                            <a href="@item.Url" class="btn btn-dark">Köp</a>
+                                        </div>
+                                     </div>
+                                                   
+                                </div>
+                              
+                              </div>
+                         </div> 
+                      </div>
+                     }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

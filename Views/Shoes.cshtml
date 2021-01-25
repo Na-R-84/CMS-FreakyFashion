@@ -1,0 +1,32 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<ContentModels.Shoes>
+@using ContentModels = Umbraco.Web.PublishedModels;
+@{
+	Layout = "MainTemplate.cshtml";
+}
+@Html.Partial("Hero")
+@{
+	var selection = Umbraco.Content(Guid.Parse("29232568-b47d-4259-986d-d61b744c2dc4"))
+    .Children()
+    .Where(x => x.IsVisible());
+}
+
+	@foreach (var item in selection)
+	{
+	<div class="container">
+	    <div class="row">
+		
+	<a href="@item.Url" style="color:black">@item.Name</a>
+	
+	 @{ var shoes = item.Value<IPublishedContent>("productImage");
+        if (shoes != null)
+        {
+        <a href="@item.Url" >
+            <img class="card-img-top" src="@shoes.Url" style="width:250px" alt="@shoes.Value("alt")" />
+        </a>
+        }
+    }
+    </div>
+    </div>
+	}
+
+

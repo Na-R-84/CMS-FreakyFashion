@@ -1,0 +1,47 @@
+﻿@{
+	var categories = Umbraco.Content(Guid.Parse("979340c4-b790-4137-b1c3-3a16e468b042"))
+    .Children()
+    .Where(x => x.IsVisible());
+}
+
+
+<div class="container">
+<div class="row">
+	<div class="col">
+		<div class="card-deck">
+			@foreach (var item in categories)
+			{
+			<div class="card" style=" background: #d1e0e0">
+				<div class="container">
+					<div class="row">
+						<div class="last-product" style="display: flex;  margin-bottom: 20px;">
+							<div>
+								<div class="card-body">
+									@{ var categoryItem = item.Value<IPublishedContent>("categoryImage");
+											if (categoryItem != null)
+											{
+												<a href="@item.Url">
+													<img class="card-img-top" src="@categoryItem.Url" style="width:150px" alt="@categoryItem.Value(" alt")" />
+												</a>
+											}
+									}
+									<a href="@item.Url" style="color:black">
+										<h5 class="card-title">@item.Name</h5>
+									</a>
+
+				
+								</div>
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+			}
+		</div>
+	</div>
+</div>
+</div>
+
+@inherits Umbraco.Web.Mvc.UmbracoViewPage
